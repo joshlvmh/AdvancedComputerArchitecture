@@ -1,6 +1,6 @@
-Advanced Computer Architecture, University of Bristol
+Advanced Computer Architecture COMSM0053, University of Bristol
 
-Processor simulator in C++.
+Pipelined, superscalar processor simulator in C++.
 
 To compile:
   make clean
