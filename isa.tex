@@ -1,0 +1,75 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{tabularx}
+\usepackage{verbatim}
+
+\begin{document}
+{
+    \section{ISA}
+
+    \subsection{Notes}
+    \begin{itemize}
+      \item INC = 4 bytes (for 32-bit word processor)
+      \item fixed memory model
+      \item pcrel = PC relative address for control flow
+      \item rs = register source
+      \item rd = register destination
+      \item imm = immediate
+      \item d = size of datatype
+      \item load-store ISA
+    \end{itemize}
+
+    \subsection{Instructions}
+    \begin{tabular}{|ll|l|l|}
+      \hline
+      \multicolumn{2}{|c|}{Instruction Format} & Description & Verbose Description \\
+      \hline
+      \hline
+      \tt add & \tt rd, rs1, rs2    & Add            & {\tt rd $\leftarrow$ rs1 + rs2, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt sub & \tt rd, rs1, rs2    & Subtract       & {\tt rd $\leftarrow$ rs1 - rs2, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt mul & \tt rd, rs1, rs2    & Multiply       & {\tt rd $\leftarrow$ rs1 * rs2, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt and & \tt rd, rs1, rs2    & AND            & {\tt rd $\leftarrow$ rs1 \& rs2, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt or  & \tt rd, rs1, rs2    & OR             & {\tt rd $\leftarrow$ rs1 | rs2, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt xor & \tt rd, rs1, rs2    & XOR            & {\tt rd $\leftarrow$ rs1 \^{} rs2, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt beq & \tt rs1, rs2, pcrel & Branch Equal   & {\tt pc $\leftarrow$ pc + ((rs1==rs2) ? pcrel : INC)} \\
+      \hline
+      \tt bnq & \tt rs1, rs2, pcrel & Branch Equal   & {\tt pc $\leftarrow$ pc + ((rs1!=rs2) ? pcrel : INC)} \\
+      \hline
+      \tt jmp & \tt rd, pcrel       & Jump           & {\tt rd $\leftarrow$ pc + 4, pc $\leftarrow$ pc + pcrel} \\
+      \hline
+      \tt ld  & \tt rd, rs1         & Load           & {\tt rd $\leftarrow$ mem[rs1], pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt ldi & \tt rd, imm         & Load Immediate & {\tt rd $\leftarrow$ imm, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt lds & \tt rd, rs2, rs2    & Load Scaled    & {\tt rd $\leftarrow$ mem[rs1 + rs2 * d], pc $\leftarrow$ pc + INC} \
+      \hline
+      \tt st  & \tt rs1, rd         & Store          & {\tt mem[rd] $\leftarrow$ rs1, pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt cmp & \tt rs1, rs2, rd    & Compare        & {\tt rd $\leftarrow$ (rs1 > rs2) ? 1 : (rs1 < rs2 ? -1 : 0), pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt shr & \tt rs1, rs2, rd    & Shift Right    & {\tt rd $\leftarrow$ (rs1 >> rs2), pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt shl & \tt rs1, rs2, rd    & Shift Left     & {\tt rd $\leftarrow$ (rs1 << rs2), pc $\leftarrow$ pc + INC} \\
+      \hline
+      \tt hlt & \tt                 & Halt           & {\tt stop execution                                        } \\
+      \hline
+    \end{tabular}
+
+    \subsection{Instruction set encoding}
+
+    Opcodes, bit widths for operands etc
+    4 bit opcode for 16 instructions
+    Registers? 32? 5 bits for each
+    ADD: 4 + 5 + 5 + 5 = 19
+    64? ADD: 4 + 6 + 6 + 6 = 22
+}
+\end{document}
